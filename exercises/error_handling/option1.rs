@@ -3,15 +3,26 @@
 // is empty, so `pop` returns `None`, and `unwrap` panics if it's called
 // on `None`. Handle this in a more graceful way than calling `unwrap`!
 // Scroll down for hints :)
-
+fn my_print<T>(term: Option<T>) where T: std::fmt::Debug {
+    match term {
+        Some(thing) => {
+            println!("The last item in the list is {:?}", thing);
+        },
+        None => {
+            println!("The last item in the list is None");
+        },
+    };
+}
 fn main() {
     let mut list = vec![3];
 
-    let last = list.pop().unwrap();
-    println!("The last item in the list is {:?}", last);
+    let last = list.pop();
+    my_print::<i32>(last);
+    //println!("The last item in the list is {:?}", last);
 
-    let second_to_last = list.pop().unwrap();
-    println!("The second-to-last item in the list is {:?}", second_to_last);
+    let second_to_last = list.pop();
+    my_print::<i32>(second_to_last);
+    //println!("The second-to-last item in the list is {:?}", second_to_last);
 }
 
 
